@@ -1,6 +1,6 @@
 # ChrisDaDriver - WiGLE Wardriving for M5Cardputer
 
-ChrisDaDriver is a high-performance, multi-threaded wardriving firmware designed specifically for the **M5Cardputer**. It captures WiFi networks (802.11 b/g/n) and Bluetooth Low Energy (BLE) devices in parallel, enriches the data with GPS coordinates, and exports logs in the official **WiGLE CSV format (v1.5)** for seamless upload to [wigle.net](https://wigle.net).
+ChrisDaDriver is a high-performance, multi-threaded wardriving firmware designed specifically for the **M5Cardputer**. It captures WiFi networks (802.11 b/g/n) and Bluetooth Low Energy (BLE) devices in parallel, enriches the data with GPS coordinates, and exports logs in the official **WiGLE CSV format (v1.5)** for seamless upload to [wigle.net](https://wigle.net) or https://wdgwars.pl/.
 
 ---
 
