@@ -29,6 +29,47 @@ ChrisDaDriver is a high-performance, multi-threaded wardriving firmware designed
 
 ---
 
+## Firmware Structure
+
+```text
+                     ┌────────────────────────┐
+                     │    GPS (ATGM336H/CASIC)│
+                     │    UART2 @ 115200 Baud │
+                     └───────────┬────────────┘
+                                 │ NMEA (PCAS02/03/04)
+                                 ▼
+                    ┌──────────────────────────┐
+                    │       TinyGPSPlus        │
+                    │  (safeLat, safeLng, ...) │
+                    └────────────┬─────────────┘
+                                 │ Position + Zeitstempel
+  ┌──────────────────────┐       │       ┌────────────────────────┐
+  │ WLAN Sniffer Task    │       │       │ BLE Scan Callbacks     │
+  │ (Core 0, Promiscuous)├───────┼───────┤ (Core 1, Active Scan)  │
+  └──────────┬───────────┘       │       └───────────┬────────────┘
+             │                   │                   │
+             └───────────┐       │       ┌───────────┘
+                         ▼       ▼       ▼
+                 ┌──────────────────────────────┐
+                 │     Mutex (dataMutex)        │
+                 │  - Deduplizierung (std::set) │
+                 │  - RAM-Schutz (Cleanup)      │
+                 └───────────────┬──────────────┘
+                                 │
+                                 ▼
+                 ┌──────────────────────────────┐
+                 │     SD-Schreib-Queue         │
+                 │    (std::deque<String>)      │
+                 └───────────────┬──────────────┘
+                                 │
+                                 ▼
+                 ┌──────────────────────────────┐
+                 │    SD-Karte (WiGLE CSV)      │
+                 │    /ChrisDaDriver/WarDrive   │
+                 └──────────────────────────────┘
+```
+---
+
 ## File Output Structure
 
 Log files are stored automatically on the SD card in sequential order:
@@ -39,3 +80,4 @@ Log files are stored automatically on the SD card in sequential order:
     ├── wd_000.csv
     ├── wd_001.csv
     └── ...
+
