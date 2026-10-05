@@ -42,9 +42,9 @@ ChrisDaDriver is a high-performance, multi-threaded wardriving firmware designed
                     │       TinyGPSPlus        │
                     │  (safeLat, safeLng, ...) │
                     └────────────┬─────────────┘
-                                 │ Position + Zeitstempel
+                                 │ Position + Timestamp
   ┌──────────────────────┐       │       ┌────────────────────────┐
-  │ WLAN Sniffer Task    │       │       │ BLE Scan Callbacks     │
+  │ Wi-Fi Sniffer Task   │       │       │ BLE Scan Callbacks     │
   │ (Core 0, Promiscuous)├───────┼───────┤ (Core 1, Active Scan)  │
   └──────────┬───────────┘       │       └───────────┬────────────┘
              │                   │                   │
@@ -52,19 +52,19 @@ ChrisDaDriver is a high-performance, multi-threaded wardriving firmware designed
                          ▼       ▼       ▼
                  ┌──────────────────────────────┐
                  │     Mutex (dataMutex)        │
-                 │  - Deduplizierung (std::set) │
-                 │  - RAM-Schutz (Cleanup)      │
+                 │  - Deduplication (std::set)  │
+                 │  - RAM Protection (Cleanup)  │
                  └───────────────┬──────────────┘
                                  │
                                  ▼
                  ┌──────────────────────────────┐
-                 │     SD-Schreib-Queue         │
+                 │     SD Write Queue           │
                  │    (std::deque<String>)      │
                  └───────────────┬──────────────┘
                                  │
                                  ▼
                  ┌──────────────────────────────┐
-                 │    SD-Karte (WiGLE CSV)      │
+                 │     SD Card (WiGLE CSV)      │
                  │    /ChrisDaDriver/WarDrive   │
                  └──────────────────────────────┘
 ```
