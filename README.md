@@ -8,7 +8,7 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 
 ## Release Notes
 
-### What's New in V2.5 🚀
+## What's New in V2.5 🚀
 
 - **Full NMEA Telemetry Activation**: Explicitly enabled all standard NMEA sentences (`GGA`, `GLL`, `GSA`, `GSV`, `RMC`, `VTG`, `ZDA`) via hardware configuration (`PCAS03`) for comprehensive satellite diagnostics and improved tracking reliability.
 - **Fix-Gated Packet Processing**: Deferred all Wi-Fi and BLE beacon processing until a valid GPS fix is established. Eliminates heap exhaustion and prevents unexpected device reboots caused by high BLE device density during initial boot/GPS search.
@@ -16,7 +16,7 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 
 ---
 
-## What's New in V2.0 🚀
+## What's New in V2.0
 
 - **FlatHashSet Deduplication**: Replaced `std::set` with custom `FlatHashSetUint64` data structures for WLAN and BLE. Fast open-addressing lookup without heap fragmentation.
 - **Smart GPS Fallback**: Gracefully handles temporary GPS loss by utilizing cached high-precision coordinates (`safeLat`, `safeLng`) to prevent lost scan entries.
