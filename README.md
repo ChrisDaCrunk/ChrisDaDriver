@@ -38,6 +38,35 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 
 ---
 
+## Speed is everything!
+### Wi-Fi Channel Hopping & Loop Times
+
+| Parameter | Value | Details |
+| :--- | :--- | :--- |
+| **Hop Interval** | `100 ms` | Channel residence time (`WLAN_CHANNEL_HOP_MS = 100`) |
+| **Channel Range** | `1 – 13` | Sequential hopping sequence[cite: 5] |
+| **Full Sweep Duration** | `~1.3 s` | Total cycle time ($13 \times 100\text{ ms}$) |
+| **Task Loop Cycle (Core 0)** | `~100 ms` | Base delay (`vTaskDelay(100ms)`) + 1–5 ms buffer execution time |
+
+---
+
+### Wi-Fi Scan Routine & Timing
+
+* **Packet Capture (Interrupt):** **Real-time (< 1 ms)** via sniffer callback into ring buffer (size: 32).
+* **Buffer Processing:** **~1 ms per packet** (`vTaskDelay(1ms)` per iteration for watchdog feeding).
+* **Mutex Timeout (SD Queue):** **Max. 100 ms** wait time for SD queue access.
+
+---
+
+### BLE Scan Times & Overheads (Main Loop Core 1)
+
+* **BLE Scan Window / Interval:** **120 ms** window / **160 ms** interval.
+* **BLE Cache Reset:** Every **5.0 s** (clear & restart cycle).
+* **Main Loop Cycle:** **~10 ms** base delay + SD flush & UI redraw overhead.
+* **Total Logging Throughput:** **~22 log entries / s** (combined Wi-Fi + BLE).
+
+---
+
 ## Hardware Requirements
 
 - **M5Stack Cardputer**
