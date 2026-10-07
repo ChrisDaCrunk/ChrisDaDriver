@@ -14,6 +14,9 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 - **Fix-Gated Packet Processing**: Deferred all Wi-Fi and BLE beacon processing until a valid GPS fix is established. Eliminates heap exhaustion and prevents unexpected device reboots caused by high BLE device density during initial boot/GPS search.
 - **"Waiting for GPS" Visual Indicator**: Added a clear status box overlay to the display during the GPS acquisition phase, providing immediate visual feedback before data collection starts.
 
+- <img width="491" height="505" alt="image" src="https://github.com/user-attachments/assets/4807b460-a33e-4611-ac93-c3ec208d3968" />
+
+
 ---
 
 ## What's New in V2.0
