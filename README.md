@@ -8,24 +8,12 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 
 ## Release Notes
 
-## What's New in V2.5 🚀
+## Release Notes
 
-- **Full NMEA Telemetry Activation**: Explicitly enabled all standard NMEA sentences (`GGA`, `GLL`, `GSA`, `GSV`, `RMC`, `VTG`, `ZDA`) via hardware configuration (`PCAS03`) for comprehensive satellite diagnostics and improved tracking reliability.
-- **Fix-Gated Packet Processing**: Deferred all Wi-Fi and BLE beacon processing until a valid GPS fix is established. Eliminates heap exhaustion and prevents unexpected device reboots caused by high BLE device density during initial boot/GPS search.
-- **"Waiting for GPS" Visual Indicator**: Added a clear status box overlay to the display during the GPS acquisition phase, providing immediate visual feedback before data collection starts.
+## What's New in V3.0 🚀
 
-- <img width="491" height="505" alt="image" src="https://github.com/user-attachments/assets/4807b460-a33e-4611-ac93-c3ec208d3968" />
-
-
----
-
-## What's New in V2.0
-
-- **FlatHashSet Deduplication**: Replaced `std::set` with custom `FlatHashSetUint64` data structures for WLAN and BLE. Fast open-addressing lookup without heap fragmentation.
-- **Smart GPS Fallback**: Gracefully handles temporary GPS loss by utilizing cached high-precision coordinates (`safeLat`, `safeLng`) to prevent lost scan entries.
-- **Toggleable Developer Overlay**: Press **`D`** on the physical keyboard to show/hide real-time heap usage, SD queue fill level, and GPS stats.
-- **Aggressive RAM Protection**: Automatic cache clearing when available RAM drops below 40 KB or capacity limits are reached.
-- **Improved UI Elements**: Dedicated visual "Driving" status overlay, smart count scaling (K-units for >10,000 devices), and color-coded GPS status indicators.
+- **Short-Press Display Power Management**: A quick short-press on `BTN0` toggles the display backlighting on and off. When turned off, brightness is dimmed to conserve battery; re-activating instantly restores full operational brightness and redraws the UI without interrupting logging tasks.
+- **Dynamic File-Based Configuration System (`config.txt`)**: Automatically scans for `/ChrisDaDriver/config.txt` on the SD card at boot. If missing or outdated, a fresh default config file is generated automatically, allowing seamless customization of hardware pins, scanner timings, and UI settings without reflashing.
 
 ---
 
@@ -82,7 +70,8 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 
 | Key / Button | Action |
 | :--- | :--- |
-| **Btn 0 (G0 / OK)** | Start / Stop Wardriving session (Creates a new CSV log file) |
+| **Btn 0 (Short Press)** | Toggle Display Backlighting ON / OFF |
+| **Btn 0 (Long Press)** | Start / Stop Wardriving session (Creates a new CSV log file) |
 | **`D` (Keyboard)** | Toggle Developer Diagnostic Overlay |
 
 ---
@@ -125,3 +114,40 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
                  │     SD Card (WiGLE CSV)      │
                  │    /ChrisDaDriver/WarDrive   │
                  └──────────────────────────────┘
+```
+
+---
+
+## Configuration (`config.txt`)
+
+Upon its first boot, **ChrisDaDriver  automatically generates a configuration file at `/ChrisDaDriver/config.txt` on your SD card. You can edit this file to customize pin mappings, scan intervals, and display behavior:
+
+Example:
+```ini
+CONFIG_VERSION V3.0
+// ChrisDaDriver Config
+// < notes will not be processed
+
+// GPS Pins & Baud
+PIN_GPS_RX 15
+PIN_GPS_TX 13
+GPS_BAUD 115200
+
+// SD Pins
+SD_CS_PIN 12
+SD_MOSI_PIN 14
+SD_SCK_PIN 40
+SD_MISO_PIN 39
+
+// LoRa Pin
+LORA_CS_PIN 5
+
+// Performance & Tuning
+BLE_SCAN_INTERVAL 160
+BLE_SCAN_WINDOW 120
+WLAN_CHANNEL_HOP_MS 100
+
+// UI & Button Settings
+BTN_LONG_PRESS_TIME_MS 1500
+DISPLAY_BRIGHTNESS_LEVEL 80
+DISPLAY_BRIGHTNESS_DIMMED 0
