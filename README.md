@@ -8,8 +8,6 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 
 ## Release Notes
 
-## Release Notes
-
 ## What's New in V3.0 🚀
 
 - **Short-Press Display Power Management**: A quick short-press on `BTN0` toggles the display backlighting on and off. When turned off, brightness is dimmed to conserve battery; re-activating instantly restores full operational brightness and redraws the UI without interrupting logging tasks.
