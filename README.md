@@ -54,7 +54,7 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 
 - **M5Stack Cardputer**
 - **MicroSD Card** (FAT32 formatted)
-- **NMEA GPS Module** (ATGM336H / CASIC supported, connected via Port A / Grove)
+- **GPS Module** (connected via Grove or I/O header)
 
 ---
 
