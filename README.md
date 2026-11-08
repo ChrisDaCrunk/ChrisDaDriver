@@ -18,7 +18,8 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
 - **Thread-Safe Memory Management**: FreeRTOS mutexes (`dataMutex`) protect shared GPS and scan buffers against race conditions.
 - **Flicker-Free Optimized UI**: Direct rendering without heavy canvas overhead to save RAM, featuring a smooth color-transitioning battery indicator (Green > Yellow > Red).
 - **Interactive File Management**: Built-in menu to select, upload, or securely delete individual log files directly on the device.
-
+- **Direct API upload to WDGWars**: Upload your csv files directly from the Cardputer to the API.
+- 
 ---
 
 ## Speed is everything!
