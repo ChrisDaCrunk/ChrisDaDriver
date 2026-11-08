@@ -106,3 +106,69 @@ ChrisDaDriver is an ultra-fast, multi-threaded wardriving firmware built specifi
                    │    SD Card (WiGLE CSV)       │
                    │    /ChrisDaDriver/WarDrive   │
                    └──────────────────────────────┘
+
+```
+
+---
+
+## Configuration (`config.txt`)
+
+Upon its first boot, **ChrisDaDriver  automatically generates a configuration file at `/ChrisDaDriver/config.txt` on your SD card. You can edit this file to customize pin mappings, scan intervals, and display behavior:
+
+Defaults:
+```ini
+CONFIG_VERSION V4.0
+// ChrisDaDriver Config
+// < notes will not be processed
+
+// Logic
+AUTO_RUN 1
+
+
+// GPS Pins & Baud & Config
+GPS_BAUD 115200
+
+// 1: GPS / 2: BeiDou / 3: GPS + BeiDou / 4: GLONASS / 5: GPS + GLONASS / 7: GPS + BeiDou + GLONASS
+PCAS04 3
+
+// 0: Binary(faster) / 1: NMEA-0183 (standard)
+NMEA 0
+
+
+// M5Stack LoRa Cap GPS Pins
+PIN_GPS_RX 15
+PIN_GPS_TX 13
+
+// M5Stack GPS V1.1 AT6668 Module to Grove Port
+// PIN_GPS_RX 1
+// PIN_GPS_TX 2
+
+
+// SD Pins
+SD_CS_PIN 12
+SD_MOSI_PIN 14
+SD_SCK_PIN 40
+SD_MISO_PIN 39
+
+
+// LoRa Pin
+LORA_CS_PIN 5
+
+
+// Performance & Tuning
+BLE_SCAN_INTERVAL 160
+BLE_SCAN_WINDOW 120
+WLAN_CHANNEL_HOP_MS 100
+
+
+WLAN_CHANNELS 1,2,3,4,5,6,7,8,9,10,11,12,13
+
+
+// UI & Button Settings
+BTN_LONG_PRESS_TIME_MS 1000
+DISPLAY_BRIGHTNESS_LEVEL 150
+DISPLAY_BRIGHTNESS_DIMMED 20
+
+
+WDGWARS_API_Key 0
+WARDRIFT_API_Key 0
